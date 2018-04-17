@@ -1,0 +1,116 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<div>
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <a ng-href="#!/events">
+                <h1>EasyRash</h1>
+            </a>
+            <div layout="row" ng-show="headerCtrl.isLogged()" hide show-gt-xs>
+                <md-button ng-href="#!/events">Events</md-button>
+                <md-button ng-href="#!/doc">API</md-button>
+            </div>
+            <span flex></span>
+            <div layout="row" hide show-gt-xs>
+                <div ng-show="headerCtrl.isLogged()">
+                    <md-menu md-position-mode="target-right target">
+                        <md-button aria-label="EasyRash Menu" ng-click="$mdOpenMenu($event)">
+                            {{headerCtrl.getCompleteName()}}
+                            <md-icon md-menu-origin class="material-icons">account_circle</md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item md-ink-ripple="#3F51B5">
+                                <md-button aria-label="User Panel" ng-click="headerCtrl.openUserModal($event)">
+                                    <div layout="row" flex>
+                                        <md-icon md-menu-origin class="material-icons">account_circle</md-icon>
+                                        User Panel
+                                    </div>
+                                </md-button>
+                            </md-menu-item>
+                            <md-divider></md-divider>
+                            <md-menu-item md-ink-ripple="#3F51B5">
+                                <md-button ng-controller="AuthController as authCtrl" aria-label="Log Out" ng-click="logOut()">
+                                    <div layout="row" flex>
+                                        <md-icon md-menu-origin class="material-icons">eject</md-icon>
+                                        Log Out
+                                    </div>
+                                </md-button>
+                            </md-menu-item>
+
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </div>
+            <div layout="row" ng-show="headerCtrl.isLogged()" layout-align="end center">
+                <div hide-gt-xs class="pull-right">
+                    <md-button ng-click="headerCtrl.openSideNav()" class="md-icon-button">
+                        <md-icon aria-label="Menu" class="material-icons">menu</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <!--The sidenav starts here-->
+
+    <md-sidenav md-component-id="right-menu" class="md-sidenav-left md-whiteframe-z2" flex ng-show="headerCtrl.isLogged()">
+        <div class="md-toolbar-tools">
+            <h2>EasyRash Menu</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="headerCtrl.closeSideNav()">
+                <md-icon class="material-icons">close</md-icon>
+            </md-button>
+        </div>
+        <md-divider></md-divider>
+        <md-list>
+            <a ng-href="#!/events" ng-click="headerCtrl.closeSideNav()" class="sideNav">
+                <md-list-item md-ink-ripple="#3F51B5" class="pointer">
+                    <md-icon class="material-icons">event</md-icon>
+                    <p>Events</p>
+                </md-list-item>
+            </a>
+            <md-divider md-inset></md-divider>
+            <a ng-href="#!/doc" ng-click="headerCtrl.closeSideNav()" class="sideNav">
+                <md-list-item md-ink-ripple="#3F51B5" class="pointer">
+                    <md-icon class="material-icons">help</md-icon>
+                    <p>API</p>
+                </md-list-item>
+            </a>
+            <md-divider md-inset></md-divider>
+            <div ng-controller="AuthController as authCtrl" ng-show="headerCtrl.isLogged()">
+                <a ng-href="" ng-click="headerCtrl.openUserModalFromSidenav($event);" class="sideNav">
+                    <md-list-item md-ink-ripple="#3F51B5" class="pointer">
+                        <md-icon aria-label="a" class="material-icons">account_circle</md-icon>
+                        <p>User Panel</p>
+                    </md-list-item>
+                </a>
+                <md-divider md-inset></md-divider>
+                <a ng-href="" ng-click="logOut()" class="sideNav">
+                    <md-list-item md-ink-ripple="#3F51B5" class="pointer">
+                        <md-icon aria-label="a" class="material-icons">eject</md-icon>
+                        <p>Log Out</p>
+                    </md-list-item>
+                </a>
+            </div>
+            <md-divider md-inset></md-divider>
+        </md-list>
+    </md-sidenav>
+</div>

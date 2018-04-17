@@ -1,0 +1,55 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="50" flex="100">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Finalize Event</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="feCtrl.closeDialog()">
+                <i class="material-icons">close</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-subheader class="md-no-sticky">The following papers will be sent to the publisher</md-subheader>
+    <md-list ng-hide="papers_view">
+        <md-divider></md-divider>
+        <md-list-item class="noright" ng-click="feCtrl.closeDialog()" ng-href="#!/event/{{feCtrl.event.acronym}}/{{paper.url}}" ng-repeat="paper in feCtrl.acceptedPapers">
+            <ng-letter-avatar class="md-avatar" avatarborder="true" shape="round" height="50px" width="50px" data="{{paper.url}}"></ng-letter-avatar>
+            <p>{{paper.url}}</p>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+    <md-dialog-content>
+    <form name="finalizeForm" ng-submit="feCtrl.finalizeEvent()">
+        <div layout="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Publisher Email</label>
+                <input type="email" ng-model="feCtrl.publisherEmail" required />
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center" class="pad2">
+            <md-button ng-click="feCtrl.closeDialog()" md-autofocus> Cancel </md-button>
+            <span flex></span>
+            <md-button ng-disabled="!loginForm.$valid" type="submit" class="md-raised md-warn">Finalize</md-button>
+        </div>
+    </form>
+    </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,67 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="50" flex="100">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Edit Event</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="eeCtrl.closeDialog()">
+                <i class="material-icons">close</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <md-content layout="row" class="md-padding">
+            <form layout-fill name="editEventForm" ng-submit="eeCtrl.editEvent()">
+                <div layout="column" layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Title</label>
+                        <input type="text" ng-model="eeCtrl.eventdata.conference" required/>
+                    </md-input-container>
+                    <md-datepicker class="pad2" ng-model="eeCtrl.eventdata.date" required></md-datepicker>
+                </div>
+                <div ng-controller="UserChipsController as vm">
+                    <md-chips id="createEventAddChairChips" ng-init="vm.selectedUsers = eeCtrl.oldChairs" ng-model="vm.selectedUsers" ng-change="{{eeCtrl.newChairs=vm.selectedUsers}}" md-autocomplete-snap="" md-transform-chip="vm.transformChip($chip)" md-require-match=''>
+                        <md-autocomplete md-no-cache="vm.noCache" md-selected-item='vm.selectedItem' md-search-text='vm.searchText' md-items='item in vm.querySearchDeferred(vm.searchText)' md-item-text='item.given_name' placeholder="Optional: add other Chairs">
+                            <span md-highlight-text='vm.searchText'>{{item.given_name}} {{item.family_name}} [ {{item.mail}} ]</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                                {{$chip.given_name}}
+                                <strong>{{$chip.family_name}}</strong>
+                                <em>({{$chip.mail}})</em>
+                                <span>
+                        </md-chip-template>
+                    </md-chips>
+                </div>
+                <md-input-container class="md-block">
+                    <label>Description</label>
+                    <textarea ng-model="eeCtrl.eventdata.description" md-maxlength="1000" rows="4" md-select-on-focus required></textarea>
+                </md-input-container>
+                <div layout="row" layout-align="center center" class="pad2">
+                    <md-button ng-click="eeCtrl.closeDialog()" md-autofocus> Cancel </md-button>
+                    <span flex></span>
+                    <md-button ng-disabled="!(editEventForm.$valid) || eeCtrl.newChairs.length == 0" class="md-raised md-primary" type="submit">Edit</md-button>
+                </div>
+            </form>
+        </md-content>
+    </md-dialog-content>
+</md-dialog>

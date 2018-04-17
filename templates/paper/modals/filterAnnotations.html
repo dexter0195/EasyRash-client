@@ -1,0 +1,37 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-content class="contentpad">
+    <md-list flex>
+        <md-subheader class="md-no-sticky">Reviewers</md-subheader>
+        <md-list-item class="noright" ng-repeat="reviewer in paperCtrl.filteredreviewer">
+            <md-icon md-font-library="material-icons" class="material-icons {{paperCtrl.getReviewerStatusIcon(reviewer.id).class}}">{{paperCtrl.getReviewerStatusIcon(reviewer.id).name}}</md-icon> 
+            <div flex="grow" class="{{reviewer.classNameOn}} reviewerLabel">{{reviewer.id}}</div>
+            <md-switch class="md-secondary" ng-model="reviewer.show" aria-label="{{reviewer.id}} switch filter" ng-change="paperCtrl.updateReviewerFilters()"></md-switch>
+        </md-list-item>
+    </md-list>
+    <md-divider></md-divider>
+    <md-list flex>
+        <md-subheader class="md-no-sticky">Annotations list</md-subheader>
+        <md-list-item class="noright overflow" ng-repeat="comment in paperCtrl.paper.filtered_comment_list" ng-click="paperCtrl.openShowAnnotation(comment.ref)">
+            <p class="annotationfilterlabel" ng-style="paperCtrl.getLabelStyle(comment.author)">{{ paperCtrl.truncateAnnotationText(20, comment.text); }}</p>
+        </md-list-item>
+    </md-list>
+</md-content>

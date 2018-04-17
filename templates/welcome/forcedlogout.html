@@ -1,0 +1,45 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<div layout="row" layout-xs="column" layout-margin layout-fill>
+    <div flex="100" flex-gt-xs="5" layout="row" layout-gt-xs="column"></div>
+    <div flex="100" flex-gt-xs="90">
+        <div layout-gt-sm="row" class="md-whiteframe-3dp" layout="column">
+            <div flex-gt-sm="100" flex>
+                <md-toolbar layout="row" class="md-primary">
+                    <div class="md-toolbar-tools">
+                        <p>Uh oh!</p>
+                        <span flex></span>
+                    </div>
+                </md-toolbar>
+                <md-content>
+                    <div class="contentpad">
+                        <center> 
+                        <p>Your identification token has expired! For security reasons we need you to reload EasyRASH and log in again.</p>
+                        <p>
+                            <md-button class="md-raised md-primary" ng-click="authCtrl.reloadOnTokenExpired()" md-autofocus> Reload EasyRASH </md-button>
+                        </p>
+                        </center>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+        <div flex="100" flex-gt-xs="5" layout="row" layout-gt-xs="column"></div>
+    </div>

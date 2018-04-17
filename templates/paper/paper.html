@@ -1,0 +1,178 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<div layout="row" layout-xs="column" layout-margin layout-fill>
+
+    <div flex="0" flex-gt-xs="20" layout="row" layout-gt-xs="column" class="md-whiteframe-3dp" hide show-gt-sm>
+        <div>
+            <md-toolbar layout="row" class="md-primary">
+                <div class="md-toolbar-tools">
+                    <h1>Paper List</h1> <span flex></span>
+                </div>
+            </md-toolbar>
+            <md-content class="contentpad">
+                <md-list flex>
+                    <md-subheader class="md-no-sticky">You are reviewer in:</md-subheader>
+                    <md-list-item class="noright" ng-repeat="paper in paperCtrl.userPapers" ng-href="#!/event/{{paper.event}}/{{paper.url}}">
+                        <ng-letter-avatar class="md-avatar" avatarborder="true" shape="round" height="10px" width="10px" data="x"></ng-letter-avatar>
+                        <p>{{paper.url}}</p>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </div>
+        <div flex-gt-sm="100" flex="50">
+            <md-toolbar layout="row" class="md-primary">
+                <div class="md-toolbar-tools">
+                    <h1>Filter Reviewers</h1> <span flex></span>
+                </div>
+            </md-toolbar>
+            <filterAnnotations></filterAnnotations>
+        </div>
+    </div>
+    <div flex="100" flex-gt-xs="80">
+        <md-button ng-show="paperCtrl.showMobileIcon" class="md-fab" id="mobileAddAnnotation">
+            <md-icon md-font-library="material-icons">add</md-icon>
+        </md-button>
+        <div layout-gt-sm="row" class="md-whiteframe-3dp" layout="column">
+            <div flex="100" flex-gt-xs="80">
+                <md-toolbar layout="row" class="md-primary">
+                    <div class="md-toolbar-tools">
+                        <md-button hide show-gt-xs ng-href="#!/event/{{paperCtrl.eventID}}">
+                            <md-icon md-font-library="material-icons">arrow_back</md-icon>
+                            back to the event
+                        </md-button>
+                        <md-button hide-gt-xs ng-href="#!/event/{{paperCtrl.eventID}}">
+                            <md-icon md-font-library="material-icons">arrow_back</md-icon>
+                        </md-button>
+                        <span flex></span>
+                        <div layout="row" ng-show='paperCtrl.isDecided() || paperCtrl.isAwaitingDecision()'>
+                            <p>FINAL DECISION:</p>
+                            <md-icon md-font-library="material-icons" ng-style="paperCtrl.getIconStyle(paperCtrl.getState())" class="material-icons {{paperCtrl.getStatusIcon(paperCtrl.getState()).class}}">{{paperCtrl.getStatusIcon(paperCtrl.getState()).name}}</md-icon>
+                        </div>
+                    </div>
+                </md-toolbar>
+
+                <md-toolbar class="md-menu-toolbar">
+                    <div layout="row">
+                        <md-toolbar-filler layout layout-align="center center">
+                            <i class="material-icons">build</i>
+                        </md-toolbar-filler>
+
+                        <div flex layout="row" layout-xs="column">
+                            <div flex="grow" id="menu" layout="row" layout-xs="column" layout-align-xs="center center">
+                                <md-menu-bar>
+                                    <md-menu>
+                                        <button ng-click="$mdOpenMenu()">
+                                            Paper
+                                        </button>
+                                        <md-menu-content>
+                                            <md-menu-item class="md-indent">
+                                                <md-icon md-font-library="material-icons">search</md-icon>
+                                                <md-button ng-click="paperCtrl.openFilterAnnotations()">
+                                                    Filter reviewer
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-menu-item class="md-indent">
+                                                <md-icon md-font-library="material-icons">file_download</md-icon>
+                                                <md-button ng-click="paperCtrl.downloadPaper()">
+                                                    Download
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-menu-item class="md-indent">
+                                                <md-icon md-font-library="material-icons">description</md-icon>
+                                                <md-button ng-click="paperCtrl.showMetadataPaper()">
+                                                    Paper Metadata
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+
+                                    <md-menu ng-show="(paperCtrl.checkRole('reviewer', paperCtrl.paperID) && paperCtrl.mode == 'Annotator')">
+                                        <button ng-click="$mdOpenMenu()">
+                                            Review
+                                        </button>
+                                        <md-menu-content>
+                                            <md-menu-item class="md-indent">
+                                                <md-icon md-font-library="material-icons">thumbs_up_down</md-icon>
+                                                <md-button ng-click="paperCtrl.openFinalReviewerDecision()">
+                                                    Final valutation
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+
+                                    <md-menu ng-show="paperCtrl.checkRole('chair', paperCtrl.eventID) && paperCtrl.mode == 'Annotator'">
+                                        <button ng-click="$mdOpenMenu()">
+                                            Admin
+                                        </button>
+                                        <md-menu-content>
+                                            <md-menu-item class="md-indent">
+                                                <md-icon md-font-library="material-icons">account_box</md-icon>
+                                                <md-button ng-click="paperCtrl.openAddReviewersDialog()">
+                                                    Assing reviewer
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-menu-divider></md-menu-divider>
+                                            <md-menu-item ng-show="paperCtrl.isAwaitingDecision()" class="md-indent">
+                                                <md-icon md-font-library="material-icons">gavel</md-icon>
+                                                <md-button ng-click="paperCtrl.openFinalChairDecision()">
+                                                    Final valutation
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </md-menu-bar>
+                                <md-menu-bar>
+                                    <md-menu ng-show="(paperCtrl.mode == 'Annotator' && paperCtrl.paper.modified == true && (paperCtrl.checkRole('reviewer', paperCtrl.paperID) || paperCtrl.checkRole('chair', paperCtrl.eventID) ))">
+                                        <button ng-click="paperCtrl.savePaper()">
+                                            <md-icon md-font-library="material-icons">save</md-icon>
+                                            Save
+                                        </button>
+                                        <md-menu-content class="nodisplay">
+                                        </md-menu-content>
+                                    </md-menu>
+                                </md-menu-bar>
+                            </div>
+                            <div class='mode_content md-body-1' layout="column" layout-align-xs="center center">
+                                <div flex-xs ng-show="(paperCtrl.checkRole('reviewer', paperCtrl.paperID) || paperCtrl.checkRole('chair', paperCtrl.eventID))">
+                                    <md-switch md-invert="true" ng-model="paperCtrl.lock" aria-label="paper lock" ng-change="paperCtrl.changeMode()">{{paperCtrl.mode}}</md-switch>
+                                </div>
+                                <div flex-xs="50" hide show-xs>&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                </md-toolbar>
+
+                <md-progress-linear md-mode="query" ng-show="loading"></md-progress-linear>
+                <md-content layout="row">
+                
+                        <div flex="100">
+                            <div id="rash-head"></div>
+                            <div id="rash-root" class="rash_padding" ng-mouseup="paperCtrl.triggerAddAnnotation()" show-md flex class="show-md flex" ng-bind-html="paperCtrl.paper.body"></div>
+                        </div>
+                   
+                </md-content>
+
+            </div>
+        </div>
+    </div>
+    
+</div>

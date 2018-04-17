@@ -1,0 +1,54 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="30" flex="100">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Global valutation paper</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cdcCtrl.closeDialog()">
+        <i class="material-icons">close</i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <h1>{{cdcCtrl.paper.data.title}}</h1>
+
+      <div layout="row" layout-align="space-between center">
+        <span>Evaluate paper:</span>
+        <md-select ng-model="cdcCtrl.finalDecision" placeholder="Valutation" class="md-no-underline">
+          <md-option value="rejected-for-publication">Rejected</md-option>
+          <md-option value="accepted-for-publication">Accepted</md-option>
+        </md-select>
+      </div>
+
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button ng-click="cdcCtrl.closeDialog()" md-autofocus>
+      Cancel
+    </md-button>
+    <span flex></span>
+    <md-button ng-click="cdcCtrl.saveDecision()" class="md-raised md-primary md-button md-ink-ripple">
+      Save
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

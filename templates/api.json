@@ -1,0 +1,106 @@
+[{
+    "api": "/api/user",
+    "command": "",
+    "method": "GET",
+    "description": "Returns a json with all the users and their information (mail, given_name, family_name)"
+}, {
+    "api": "/api/user",
+    "command": "/<string:user_id>",
+    "method": "GET",
+    "description": "Return a json with the user_id information ('given_name', 'family_name', 'mail', 'sex', 'roles')"
+}, {
+    "api": "/api/user",
+    "command": "/<string:user_id>/pwdrecovery",
+    "method": "GET",
+    "description": "Send an email to user_id with a link to reset his password"
+}, {
+    "api": "/api/user",
+    "command": "/<string:user_id>",
+    "method": "PUT",
+    "description": "Creates a new user with the data fields 'given_name', 'family_name', 'password' ,  sex"
+}, {
+    "api": "/api/user",
+    "command": "/<string:user_id>",
+    "method": "POST",
+    "description": "Edit the user's information with the data fields given ('given_name', 'family_name', 'password' , 'sex')"
+}, {
+    "api": "/api/token",
+    "command": "",
+    "method": "GET",
+    "description": "Generate a new token for the user that is currently logged in. That token can be used to identify the user instead of the password"
+}, {
+    "api": "/api/confirmation",
+    "command": "/confirm/<string:token>",
+    "method": "GET",
+    "description": "Send an email to user_id with a link to confirm his email address"
+}, {
+    "api": "/api/confirmation",
+    "command": "/resend/<string:user_id>",
+    "method": "GET",
+    "description": "Send an email to user_id with a link to resend the confirmation email"
+}, {
+    "api": "/api/event",
+    "command": "",
+    "method": "GET",
+    "description": "Returns a json list of all the events and their information"
+}, {
+    "api": "/api/event",
+    "command": "/<string:event_id>",
+    "method": "GET",
+    "description": "Returns a json with the event_id's information"
+}, {
+    "api": "/api/event",
+    "command": "/<string:event_id>",
+    "method": "PUT",
+    "description": "Creates a new event event_id with the given data ('conference', 'chairs', 'description', 'date')"
+}, {
+    "api": "/api/event",
+    "command": "/<string:event_id>",
+    "method": "POST",
+    "description": "Edits the event event_id with the given data ('conference', 'chairs', 'description', 'date')"
+}, {
+    "api": "/api/event",
+    "command": "/<string:event_id>",
+    "method": "DELETE",
+    "description": "Delete the event event_id"
+}, {
+    "api": "/api/paper",
+    "command": "",
+    "method": "GET",
+    "description": "Returns a json list of all the papers and their information"
+}, {
+    "api": "/api/paper",
+    "command": "/<string:paper_id>/lock",
+    "method": "GET",
+    "description": "Returns the lock on the paper paper_id and who owns it"
+}, {
+    "api": "/api/paper",
+    "command": "/<string:paper_id>/<string:fformat>",
+    "method": "GET",
+    "description": "Returns the file of paper_id accorging with the fformat format. If fformat=html returns the base64 encoded rash, if fformat='pdf' returns the converted pdf"
+}, {
+    "api": "/api/paper",
+    "command": "/<string:paper_id>",
+    "method": "GET",
+    "description": "Returns a json with the paper paper_id's information"
+}, {
+    "api": "/api/paper",
+    "command": "/<string:paper_id>",
+    "method": "PUT",
+    "description": "Submit a new paper with the data field specified ('title', 'authors', 'event', 'text')"
+}, {
+    "api": "/api/paper",
+    "command": "/<string:paper_id>/lock",
+    "method": "POST",
+    "description": "Update the lock owner and/or the expiring date, specify in data 'action:get' or 'action:release' if you want to get or release the lock"
+}, {
+    "api": "/api/paper",
+    "command": "/<string:paper_id>",
+    "method": "POST",
+    "description": "Edit the paper paper_id with the data field specified ('text' , 'reviewers')"
+}, {
+    "api": "/api/paper",
+    "command": "/<string:paper_id>",
+    "method": "DELETE",
+    "description": "Delete the paper paper_id"
+}]

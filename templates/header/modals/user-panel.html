@@ -1,0 +1,96 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="50" flex="100" ng-controller="userPanelController as userPanelCtrl">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>User Panel</h2> <span flex></span>
+            <md-button class="md-icon-button" ng-click="userPanelCtrl.closeDialog()"> <i class="material-icons">close</i> </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <p> </p>
+            <form name="userPanelForm">
+                <div layout="column" layout-gt-sm="row">
+                    <h3>User information</h3> </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>First name</label>
+                        <input ng-model="userPanelCtrl.firstName" value="ciao" required> </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Last Name</label>
+                        <input ng-model="userPanelCtrl.lastName" required> </md-input-container>
+                </div>
+                <div layout="column" layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Email</label>
+                        <input type="email"  ng-model="userPanelCtrl.email" required disabled/> </md-input-container>
+                    <md-input-container>
+                        <label>Sex</label>
+                        <md-select ng-model="userPanelCtrl.sex" required>
+                            <md-option value="M">Male</md-option>
+                            <md-option value="F">Female</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="column" layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Old Password</label>
+                        <input type="password" ng-model="userPanelCtrl.oldpassword"  /> </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>New Password</label>
+                        <input type="password" ng-model="userPanelCtrl.newpassword"  /> </md-input-container>
+                </div>
+                <md-divider></md-divider>
+                <div layout="column" layout-gt-sm="row">
+                    <h3>Theme</h3> </div>
+                <div layout="column" layout-gt-sm="row" layout-fill>
+                    <md-input-container flex-gt-sm="35">
+                        <label>Primary Palette {{primary.code}}</label>
+                        <md-select ng-model="userPanelCtrl.userPrimaryPalette">
+                            <md-option ng-style="{'background-color':primary.code}" ng-repeat="primary in userPanelCtrl.colors" value="{{primary.color}}"> {{primary.color}} </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex-gt-sm="35">
+                        <label>Accent Palette</label>
+                        <md-select ng-model="userPanelCtrl.userAccentPalette">
+                            <md-option ng-style="{'background-color':accent.code}" ng-repeat="accent in userPanelCtrl.colors" value="{{accent.color}}"> {{accent.color}} </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex-gt-sm="30">
+                        <md-button ng-click="userPanelCtrl.defaultTheme()">Reset Theme</md-button>
+                    </md-input-container>
+                </div>
+                <md-divider></md-divider>
+                <div layout="column" layout-gt-sm="row">
+                    <h3>API Setting</h3> </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Api Key</label>
+                    <input ng-model="userPanelCtrl.apikey" ng-click="userPanelCtrl.selctOnClick($event)" /> </md-input-container>
+            </form>
+            <md-progress-linear md-mode="query" ng-show="userPanelCtrl.loading"></md-progress-linear>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="userPanelCtrl.closeDialog()"> Close </md-button> <span flex></span>
+<md-button class="md-raised md-primary" ng-click="userPanelCtrl.updateUser()" md-autofocus> Save </md-button>
+            </md-dialog-actions>
+</md-dialog>

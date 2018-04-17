@@ -1,0 +1,71 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="60" flex="100" id="metadata">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>{{pmCtrl.paper.data.title}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="pmCtrl.closeDialog()">
+        <i class="material-icons">close</i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="contentpad" layout="column">
+      <md-subheader class="md-no-sticky">Authors</md-subheader>
+      <md-list-item class="md-3-line" ng-repeat="author in pmCtrl.aut">
+        <ng-letter-avatar class="md-avatar" avatarborder="true" shape="round" height="60px" width="60px" data="{{author.family_name}}"></ng-letter-avatar>
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ author.family_name }}</h3>
+          <h4>{{ author.given_name }}</h4>
+          <p>{{ author.mail }}</p>
+        </div>
+      </md-list-item>
+      <md-subheader class="md-no-sticky">Reviewers</md-subheader>
+      <md-list-item class="md-3-line" ng-repeat="reviewer in pmCtrl.rev">
+        <ng-letter-avatar class="md-avatar" avatarborder="true" shape="round" height="60px" width="60px" data="{{reviewer.family_name}}"></ng-letter-avatar>
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ reviewer.family_name }}</h3>
+          <h4>{{ reviewer.given_name }}</h4>
+          <p>{{ reviewer.mail }}</p>
+        </div>
+      </md-list-item>
+      <div layout="row" layout-align="center center">
+        <md-button ng-click="pmCtrl.showRawMetadata = !pmCtrl.showRawMetadata" md-autofocus>
+           Raw Metadata
+        </md-button>
+      </div>
+      <md-content ng-show="pmCtrl.showRawMetadata">
+        <pre class="papermeta">{{pmCtrl.paper.rash.head.innerHTML}}</pre>
+      </md-content>
+    </div>
+  </md-dialog-content>
+  <md-divider></md-divider>
+  <md-dialog-actions layout="row">
+    <md-divider></md-divider>
+    <p class="bold">PAPER STATUS:</p>
+    <md-icon md-font-library="material-icons" class="material-icons {{pmCtrl.getStatusIcon(pmCtrl.paper.data.state.substr(4)).class}}">{{pmCtrl.getStatusIcon(pmCtrl.paper.data.state.substr(4)).name}}</md-icon>
+    <span flex></span>
+    <md-button ng-click="pmCtrl.closeDialog()" md-autofocus>
+      Close
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,64 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="50" flex="100">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Annotation</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="saCtrl.closeDialog()">
+        <i class="material-icons">close</i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <md-list-item class="block" ng-repeat="(i,annotation) in saCtrl.filteredAnnotationsToShow track by $index">
+      <md-subheader class="md-no-sticky">{{annotation.ref}} - {{ annotation.author | limitTo:annotation.author.length:7}}</md-subheader>
+      <div class="contentpad">
+        <div ng-show="saCtrl.authorofit(annotation.author)">
+          <md-input-container class="md-block">
+          <blockquote ng-bind-html="annotation.paper_fragment | sanitize"></blockquote>
+            <label>Annotation Text</label>
+            <textarea rows="5" cols="5" ng-model="saCtrl.filteredAnnotationsToShow[i].text">{{annotation.text}}</textarea>
+          </md-input-container>
+          <md-button class="md-raised md-warn" ng-click="saCtrl.deleteAnnotation(i)">
+            Delete
+          </md-button>
+          <span flex></span>
+          <md-button class="md-raised md-primary" ng-click="saCtrl.editAnnotation(i)">
+            Edit
+          </md-button>
+        </div>
+
+        <div ng-hide="saCtrl.authorofit(annotation.author)">
+          <blockquote ng-bind-html="annotation.paper_fragment | sanitize"></blockquote>
+          <p>{{annotation.text}}</p>
+        </div>
+      </div>
+      <md-divider></md-divider>
+    </md-list-item>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button class="md-raised " ng-click="saCtrl.closeDialog()" md-autofocus>
+      Close
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

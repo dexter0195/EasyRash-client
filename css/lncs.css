@@ -1,0 +1,703 @@
+/* 
+lncs.css - Version 0.3, February 17, 2016
+by Silvio Peroni
+
+based on
+
+lncs.css - Version dated February 2, 2015
+by Sarven Capadisli <info@csarven.ca> http://csarven.ca/#i
+in the context of the Linked Research Project 
+(https://github.com/csarven/linked-research)
+
+This work is licensed under a Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html) 
+and follows the typographical specifications introduced in the LNCS template styles 
+(http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0).
+
+Computer Modern Unicode fonts are from http://canopus.iacp.dvo.ru/~panov/cm-unicode/ with X11 License.
+*/
+
+/* General settings */
+@font-face{
+    font-family:"CMU Serif";
+    src:local("CMU Serif"), url("../fonts/cmunrm.otf");
+}
+
+@font-face{
+    font-family:"CMU Serif Bold";
+    src:local("CMU Serif Bold"), url("../fonts/cmunbx.otf");
+    font-weight:bold;
+}
+
+@font-face{
+    font-family:"CMU Serif Italic";
+    src:local("CMU Serif Italic"), url("../fonts/cmunti.otf");
+    font-style:italic;
+}
+
+@font-face{
+    font-family:"CMU Serif Bold Italic";
+    src:local("CMU Serif Bold Italic"), url("../fonts/cmunbi.otf");
+    font-weight:bold;
+    font-style:italic;
+}
+
+@font-face{
+    font-family:"CMU Serif Monospace";
+    src:local("CMU Serif Monospace"), url("../fonts/cmuntt.otf");
+}
+
+@page {
+    size:A4;
+    margin-top: 4.3cm;
+    margin-bottom: 6.0cm;
+}
+
+#rash-root {
+    font-size:10pt !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    width:122mm !important;
+    height:193mm !important;
+    color:#000000;
+    font-family:"CMU Serif", serif !important;
+    position:relative;
+    margin:0 auto;
+    padding:2em 0;
+    line-height:1.231;
+}
+
+#rash-root section{
+    text-align:justify;
+}
+
+#rash-root *{
+    margin:0;
+    padding:0;
+}
+/* /END General settings */
+
+
+/* Inlines */
+#rash-root strong{
+    font-family:"CMU Serif Bold", serif !important;
+}
+
+#rash-root em{
+    font-family:"CMU Serif Italic", serif !important;
+}
+
+#rash-root h1 em,
+#rash-root h2 em,
+#rash-root h3 em,
+#rash-root strong em,
+#rash-root em strong{
+    font-family:"CMU Serif Bold Italic", serif !important;
+}
+/* /END Inlines */
+
+
+/* Links */
+#rash-root a{
+    text-decoration:none;
+    color:#000;
+    word-break:break-all;
+}
+/* /END Links */
+
+
+/* Codes */
+#rash-root code,
+#rash-root pre{
+    font-family:"CMU Serif Monospace", monospace !important;
+    font-size:8pt;
+}
+
+#rash-root pre{
+    font-size:8pt;
+    word-break:break-all;
+    white-space:pre-wrap;
+    margin:1em 0;
+}
+/* /END Codes */
+
+
+/* Paragraphs */
+#rash-root p{
+    text-indent:1em;
+}
+
+#rash-root section p:first-of-type{
+    text-indent:0;
+}
+/* /END Paragraphs */
+
+
+/* Title of the article */
+#rash-root header h1{
+    font-size:14pt;
+}
+/* /END Title of the article */
+
+
+/* Headings */
+#rash-root h1{
+    text-align:left;
+}
+
+#rash-root h1,
+#rash-root h2{
+    overflow:hidden;
+    font-family:"CMU Serif Bold", serif !important;
+}
+
+#rash-root h1{
+    font-size:12pt;
+    margin-top:1.5em;
+    margin-bottom:0.9em;
+}
+
+#rash-root h2{
+    font-size:10pt;
+    margin-top:1.35em;
+    margin-bottom:0.75em;
+}
+
+#rash-root h3,
+#rash-root h4,
+#rash-root h5,
+#rash-root h6{
+    display:inline;
+    font-size:10pt;
+}
+
+#rash-root h3:after{
+    font-weight:bold;
+    content:". ";
+}
+
+#rash-root h4,
+#rash-root h5,
+#rash-root h6{
+    font-weight:normal;
+}
+
+#rash-root h4:after,
+#rash-root h5:after,
+#rash-root h6:after{
+    content:". ";
+}
+
+#rash-root h3 + p,
+#rash-root h4 + p,
+#rash-root h5 + p,
+#rash-root h6 + p{
+    display:inline;
+}
+/* /END Headings */
+
+
+/* Abstract */
+#rash-root section[role=doc-abstract]{
+    font-size:9pt;
+    margin:0 2.3em 1em;
+    margin-bottom:2.75em;
+}
+
+#rash-root section[role=doc-abstract] h1,
+#rash-root section[role=doc-abstract] > p:first-of-type{
+    display:inline;
+}
+
+#rash-root section[role=doc-abstract] h1:after{
+    content:". ";
+}
+/* /END Abstract */
+
+
+/* Front matter */
+#rash-root .affiliation {
+    font-size:9pt !important;
+}
+
+#rash-root .affiliation *,
+#rash-root section[role=doc-abstract] h1,
+#rash-root section[role=doc-abstract] p{
+    font-size:0.93em;
+}
+
+#rash-root .keywords strong:after{
+    content:": ";
+}
+
+#rash-root .keywords ul{
+    display:inline;
+    margin-left: 0px;
+}
+
+#rash-root .keywords li:after{
+    content:", ";
+}
+
+#rash-root .keywords li:last-of-type:after{
+    content:"";
+}
+
+#rash-root .keywords li code{
+    font-family:"CMU Serif", serif !important;
+}
+
+#rash-root .keywords{
+    text-indent:0px;
+    margin-top:0.5cm;
+    margin-bottom:2.75em;
+}
+
+#rash-root .keywords li{
+    display:inline;
+    list-style-type:none;
+}
+
+#rash-root .title{
+    text-align:center;
+}
+
+#rash-root .acm_subject_categories,
+#rash-root .acm_general_terms{
+    display:none;
+}
+
+#rash-root .authors{
+    margin:0.7cm auto 2.5em -3%;
+    text-align:center;
+    width:106%;
+    line-height:1;
+    font-style:normal;
+}
+
+#rash-root .authors strong {
+    font-weight:normal;
+}
+
+#rash-root .authors strong:after {
+    content:", ";
+}
+
+#rash-root .authors strong:last-of-type:after {
+    content:"";
+}
+
+#rash-root .email{
+    font-family:"CMU Serif Monospace", monospace !important;
+    font-size:8pt;
+}
+/* /END Front matter */
+
+/* Images */
+#rash-root img, #rash-root svg{
+    border:0;
+    page-break-inside:avoid;
+    max-width:100%;
+    height:auto;
+}
+#rash-root figure img, #rash-root figure svg {
+    vertical-align:middle;
+}
+/* /END Images */
+
+
+/* Tables */
+#rash-root figure[role=tablebox] {
+    margin-top:1em;
+    margin-bottom:1em;
+}
+
+#rash-root table{
+    border-collapse:collapse;
+    width:100%;
+    margin-bottom:1em;
+    border-top:2px solid #000;
+    border-bottom:2px solid #000;
+    font-size:8pt;
+    word-break:break-all;
+}
+
+#rash-root th,
+#rash-root td{
+    padding-top:0.25em;
+    padding-bottom:0.25em;
+    padding-right:1em;
+    text-align:left;
+}
+
+#rash-root tr{
+    vertical-align:top;
+    border-bottom:1px solid #000;
+}
+
+#rash-root tr:last-child{
+    border-bottom:0;
+}
+
+#rash-root th:last-child,
+#rash-root td:last-child{
+    padding-right:0;
+}
+
+#rash-root table p {
+    text-indent:0;
+}
+/* /END Tables */
+
+
+/* Heading counters */
+#rash-root {
+    counter-reset:h1;
+}
+#rash-root h1{
+    counter-reset:h2;
+}
+
+#rash-root section:not([role=doc-abstract]):not([role=doc-bibliography]):not([role=doc-acknowledgements]):not([role=doc-footnotes]) h1:before{
+    counter-increment:h1;
+    content:counter(h1);
+    margin-right:1.5em;
+}
+
+#rash-root section:not([role=doc-abstract]):not([role=doc-bibliography]):not([role=doc-acknowledgements]):not([role=doc-footnotes]) h2:before{
+    counter-increment:h2;
+    content:counter(h1) "." counter(h2);
+    margin-right:1em;
+}
+/* /END Heading counters */
+
+
+/* Lists */
+#rash-root ul,
+#rash-root ol{
+    margin-left:1em;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+}
+
+#rash-root ul ul,
+#rash-root ol ol,
+#rash-root ul ol,
+#rash-root ol ul{
+    margin-top:0.2em;
+    margin-bottom:0.2em;
+}
+
+#rash-root li p:first-child{
+    display:inline;
+}
+/* /END Lists */
+
+/* Figure (any) */
+#rash-root figure {
+    margin-top:1em;
+    margin-bottom:1em;
+    position:relative;
+}
+
+#rash-root figure > p {
+    text-align:center;
+}
+/* /END Figure (any) */
+
+/* Listing */
+#rash-root figure > pre {
+    border: 1px solid black;
+    padding: 3px;
+}
+/* /END Listing */
+
+/* Captions */
+#rash-root figcaption{
+    text-align:center;
+    font-size:9pt;
+}
+/* /END Captions */
+
+/* Footnotes */
+#rash-root section[role=doc-footnotes] .hidden-print {
+    display: none;
+}
+
+#rash-root section[role=doc-footnotes] { 
+    counter-reset: fn;
+    font-size:9pt;
+}
+
+#rash-root section[role=doc-footnotes] > section[role=doc-footnote]:before {
+    counter-increment: fn;
+    content: counter(fn);
+    float: left;
+    padding-right: 10px;
+}
+/* /END Footnotes */
+
+/* Footer */
+#rash-root html{
+    position:relative;
+    min-height:100%;
+}
+
+#rash-root section[role=doc-footnotes] {
+    /* Margin bottom by footer height */
+    margin-bottom:90px;
+}
+
+#rash-root .footer{
+    background-color:#F5F5F5;
+    bottom:0px;
+    box-sizing:border-box;
+    color:#333;
+    display:block;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size:12px;
+    height:50px;
+    line-height:22.85px;
+    padding-bottom:5px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:5px;
+    position:fixed;
+    width:122mm;
+}
+
+#rash-root .footer span,
+#rash-root .footer div{
+    margin-left:7px;
+}
+
+#rash-root .footer div{
+    float:right;
+}
+
+#rash-root .footer div button{
+    height:100%;
+}
+
+#rash-root #layoutselection{
+    margin-left:0px;
+    margin-right:5px;
+}
+
+#rash-root .footer div{
+    position:relative;
+    vertical-align:middle;
+    display:inline;
+}
+
+#rash-root .footer > p {
+    float:left;
+    width:60%;
+    padding:0;
+    text-align:left;
+}
+
+#rash-root .footer p span:first-of-type {
+    display:block;
+    margin-left:-4px;
+}
+
+#rash-root .footer div button{
+    background-color:#FFF;
+    background-image:none;
+    border-bottom-color:#CCC;
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-image-outset:0 0 0 0;
+    border-image-repeat:stretch stretch;
+    border-image-slice:100% 100% 100% 100%;
+    border-image-source:none;
+    border-image-width:1 1 1 1;
+    border-left-color:#CCC;
+    border-left-style:solid;
+    border-left-width:1px;
+    border-right-color:#CCC;
+    border-right-style:solid;
+    border-right-width:1px;
+    border-top-color:#CCC;
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
+    border-top-style:solid;
+    border-top-width:1px;
+    box-sizing:border-box;
+    color:#333;
+    cursor:pointer;
+    display:block;
+    float:right;
+    font-feature-settings:normal;
+    font-kerning:auto;
+    font-language-override:normal;
+    font-size-adjust:none;
+    font-stretch:normal;
+    font-style:normal;
+    font-synthesis:weight style;
+    font-variant:normal;
+    font-variant-alternates:normal;
+    font-variant-caps:normal;
+    font-variant-east-asian:normal;
+    font-variant-ligatures:normal;
+    font-variant-numeric:normal;
+    font-variant-position:normal;
+    font-weight:400;
+    line-height:10px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:0px;
+    margin-top:0px;
+    overflow:visible;
+    overflow-x:visible;
+    overflow-y:visible;
+    padding-bottom:4px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:4px;
+    position:relative;
+    text-align:center;
+    text-transform:none;
+    vertical-align:middle;
+    white-space:nowrap;
+    -moz-border-bottom-colors:none;
+    -moz-border-left-colors:none;
+    -moz-border-right-colors:none;
+    -moz-border-top-colors:none;
+    -moz-user-select:none;
+}
+
+#rash-root .footer div button .caret{
+    border-bottom-color:#333;
+    border-bottom-style:solid;
+    border-bottom-width:4px;
+    border-left-color:transparent;
+    border-left-style:solid;
+    border-left-width:4px;
+    border-right-color:transparent;
+    border-right-style:solid;
+    border-right-width:4px;
+    border-top-color:#333;
+    border-top-style:none;
+    border-top-width:0px;
+    box-sizing:border-box;
+    color:#333;
+    content:"";
+    cursor:pointer;
+    display:inline-block;
+    font-feature-settings:normal;
+    font-kerning:auto;
+    font-language-override:normal;
+    font-size-adjust:none;
+    font-stretch:normal;
+    font-style:normal;
+    font-synthesis:weight style;
+    font-variant:normal;
+    font-variant-alternates:normal;
+    font-variant-caps:normal;
+    font-variant-east-asian:normal;
+    font-variant-ligatures:normal;
+    font-variant-numeric:normal;
+    font-variant-position:normal;
+    font-weight:400;
+    height:4px;
+    line-height:20px;
+    margin-left:0px;
+    text-align:center;
+    text-transform:none;
+    vertical-align:middle;
+    white-space:nowrap;
+    width:8px;
+}
+
+#rash-root .footer div ul li {
+    padding: 2px 5px 2px 5px;
+}
+
+#rash-root .footer div ul li a {
+    display: block;
+}
+
+#rash-root .footer div ul li:hover, #rash-root .footer div button:hover {
+    background-color:#D8D8D8;
+}
+
+#rash-root .footer div ul{
+    background-clip:padding-box;
+    background-color:#FFF;
+    border-bottom-color:rgba(0, 0, 0, 0.15);
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-image-outset:0 0 0 0;
+    border-image-repeat:stretch stretch;
+    border-image-slice:100% 100% 100% 100%;
+    border-image-source:none;
+    border-image-width:1 1 1 1;
+    border-left-color:rgba(0, 0, 0, 0.15);
+    border-left-style:solid;
+    border-left-width:1px;
+    border-right-color:rgba(0, 0, 0, 0.15);
+    border-right-style:solid;
+    border-right-width:1px;
+    border-top-color:rgba(0, 0, 0, 0.15);
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
+    border-top-style:solid;
+    border-top-width:1px;
+    bottom:100%;
+    box-shadow:rgba(0, 0, 0, 0.176) 0px 6px 12px 0px;
+    box-sizing:border-box;
+    display:none;
+    float:left;
+    left:0px;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin-bottom:6px;
+    margin-left:11px;
+    margin-right:0px;
+    min-width:147px;
+    padding-bottom:5px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:5px;
+    position:absolute;
+    text-align:left;
+    top:auto;
+    z-index:1000;
+    -moz-border-bottom-colors:none;
+    -moz-border-left-colors:none;
+    -moz-border-right-colors:none;
+    -moz-border-top-colors:none;
+}
+
+#rash-root .footer p{
+    display:inline;
+}
+/* /END Footer */
+
+@media print{
+    #rash-root .footer{
+        display:none;
+    }
+    
+    #rash-root h1, #rash-root h2{
+        page-break-after:avoid;
+    }
+    
+    #rash-root h1,
+    #rash-root p,
+    #rash-root ul,
+    #rash-root ol,
+    #rash-root li,
+    #rash-root pre,
+    #rash-root code{
+        orphans:3;
+        widows:3;
+    }
+}
+

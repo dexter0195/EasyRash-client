@@ -1,0 +1,101 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="50" flex="100">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Authentication</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <i class="material-icons">close</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <md-tabs md-dynamic-height md-border-bottom md-scretch-tabs="always">
+            <md-tab label="Login">
+                <md-content class="md-padding" ng-controller="AuthController as loginCtrl">
+                    <form name="loginForm" ng-submit="loginCtrl.login()">
+                        <div layout="column" layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Email</label>
+                                <input type="email" ng-model="loginCtrl.loginmail" required />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Password</label>
+                                <input type="password" ng-model="loginCtrl.loginpassword" required />
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-align="center center" class="pad2">
+                            <md-button ng-click="loginCtrl.forgotPasswordDialog()" md-no-ink="md-no-ink">Forgot Password</md-button>
+                            <div flex="flex"></div>
+                            <md-button ng-disabled="!loginForm.$valid" class="md-raised md-primary" type="submit">Login</md-button>
+                        </div>
+                    </form>
+                    <md-progress-linear md-mode="query" ng-show="loginCtrl.loading"></md-progress-linear>
+                </md-content>
+            </md-tab>
+            <md-tab label="Signup">
+                <md-content class="md-padding" ng-controller="AuthController as signupCtrl">
+                    <form name="signupForm" ng-submit="signupCtrl.signup()" novalidate>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>First name</label>
+                                <input ng-model="signupCtrl.firstName" required>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Last Name</label>
+                                <input ng-model="signupCtrl.lastName" required>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Sex</label>
+                                <md-select ng-model="signupCtrl.sex" required>
+                                    <md-option value="M">Male</md-option>
+                                    <md-option value="F">Female</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+
+                        <div layout="column" layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Email</label>
+                                <input type="email" ng-model="signupCtrl.email" required />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Password</label>
+                                <input type="password" ng-model="signupCtrl.password" required />
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-align="center center">
+                            <md-checkbox ng-model="signupCtrl.accept" aria-label="accept-conditions" class="top7" required>
+                                Accept conditions</md-checkbox>
+                            <md-button ng-href="#!/privacypolicy" target="_blank">Privacy &amp; Policy</md-button>
+                        </div>
+                        <div layout="row" layout-align="center center" class="pad2">
+                            <md-button ng-disabled="!signupForm.$valid" class="md-raised md-primary" type="submit">Signup</md-button>
+                        </div>
+                    </form>
+                    <md-progress-linear md-mode="query" ng-show="signupCtrl.loading"></md-progress-linear>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-dialog-content>
+</md-dialog>

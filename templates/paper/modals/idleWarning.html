@@ -1,0 +1,34 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="30" flex="100">
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout="row" layout-align="center center">
+      <h2>Are you still there?</h2>
+    </div>
+  </md-toolbar>
+  <md-dialog-content idle-countdown="countdown">
+    <div class="md-dialog-content" class="txtcenter">
+      <p>You have been idle for 30 minutes</p>
+      <p>You have {{countdown/60 | number : 0}}:{{countdown%60}} minutes to resume your review or your unsaved work will be lost</p>
+      <md-progress-linear md-mode="determinate" ng-value="(countdown/300)*100" ></md-progress-linear>
+    </div>
+  </md-dialog-content>
+</md-dialog>

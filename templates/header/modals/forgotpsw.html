@@ -1,0 +1,65 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<md-dialog flex-gt-sm="25" flex="100">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Forgot password </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <i class="material-icons">close</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="contentpad">
+            <p>Type your e-mail:</p>
+            <md-input-container>
+                <label>Email</label>
+                <input ng-model="fpswCtrl.forgotpsw_mail" type="email">
+            </md-input-container>
+            <div ng-show="fpswCtrl.forgotpsw_view">
+                <p>Paste the token you recived from e-mail:</p>
+                <md-input-container>
+                    <label>Token</label>
+                    <input ng-model="fpswCtrl.forgotpsw_token" type="text">
+                </md-input-container>
+                <p>Type your new password</p>
+                <md-input-container>
+                    <label>Password</label>
+                    <input ng-model="fpswCtrl.forgotpsw_newpass" type="password">
+                </md-input-container>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised " ng-click="closeDialog()" md-autofocus>
+            Close
+        </md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="fpswCtrl.changeForgottenPsw()" ng-show="fpswCtrl.forgotpsw_view">
+            Change Password
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="fpswCtrl.getTokenRecovery()" ng-hide="fpswCtrl.forgotpsw_view">
+            Send
+        </md-button>
+
+    </md-dialog-actions>
+</md-dialog>

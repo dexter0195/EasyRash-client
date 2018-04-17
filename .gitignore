@@ -1,0 +1,15 @@
+# swap
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+#NPM modules
+node_modules/
+js/easyrash.js
+
+#EDITOR
+.vscode-upload.json

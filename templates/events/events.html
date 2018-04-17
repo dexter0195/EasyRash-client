@@ -1,0 +1,86 @@
+<!--
+Copyright (C) 2016 Carlo De Pieri, Alessio Koci, Gianmaria Pedrini,
+Alessio Trivisonno
+
+This file is part of EasyRash.
+
+EasyRash is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EasyRash is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<div layout="row" layout-xs="column" layout-margin layout-fill>
+    <div flex="100" flex-gt-xs="10" layout="row" layout-gt-xs="column"></div>
+    <div flex="100" flex-gt-xs="80">
+        <div layout-gt-sm="row" class="md-whiteframe-3dp" layout="column">
+            <div flex-gt-sm="100" flex>
+                <md-toolbar layout="row" class="md-primary">
+                    <div class="md-toolbar-tools">
+                        <h1 l10n-text="events.title">Events</h1> <span flex></span>
+                        <md-button hide show-gt-xs ng-click="eventsCtrl.openAddEventModal($event)"> Add new event </md-button>
+                        <md-button hide-gt-xs ng-click="eventsCtrl.openAddEventModal($event)">
+                            <md-icon md-font-library="material-icons">add_circle</md-icon>
+                            event
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-progress-linear md-mode="query" ng-show="loading"></md-progress-linear>
+                <div layout="row" layout-align="center center" style="background-color: white;">
+                    <md-button aria-label="toggle paper to show" ng-click="eventsCtrl.showAllEvents = !eventsCtrl.showAllEvents" md-autofocus>
+                    <div ng-if="!eventsCtrl.showAllEvents">show all events</div>
+                    <div ng-if="eventsCtrl.showAllEvents">show my events</div>
+                    </md-button>
+                </div>
+                <md-content>
+                    <md-list flex>
+                        <div layout="row">
+                            <div flex="5"></div>
+                            <div flex="90">
+                                <md-input-container class="md-block" flex-gt-sm ng-hide="loading || error">
+                                    <label>{{eventsQueryStatus}}</label>
+                                    <input ng-model="searchEvents"> </md-input-container>
+                            </div>
+                            <div flex="5"></div>
+                        </div>
+                        <md-toolbar class="md-warn" ng-show="error">
+                            <div class="md-toolbar-tools">
+                                <h2 class="md-flex">{{errorMessage}}</h2>
+                            </div>
+                        </md-toolbar>
+                        <md-list-item ng-if="eventsCtrl.showAllEvents == false" class="md-3-line" ng-repeat="event in filteredEvents | filter:searchEvents" ng-href="#!/event/{{event.acronym}}">
+                            <div class="md-avatar ">
+                                <ng-letter-avatar shape="round" data="{{event.conference}}"></ng-letter-avatar>
+                            </div>
+                            <div class="md-list-item-text" layout="column">
+                                <h3 class="eventlisttitle">{{event.conference}} - {{event.acronym}}</h3>
+                                <h4><i class="material-icons">date_range</i> {{event.date | date}}</h4>
+                                <p>{{event.description}}</p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-if="eventsCtrl.showAllEvents == true" class="md-3-line" ng-repeat="event in allEvents | filter:searchEvents" ng-href="#!/event/{{event.acronym}}">
+                            <div class="md-avatar ">
+                                <ng-letter-avatar shape="round" data="{{event.conference}}"></ng-letter-avatar>
+                            </div>
+                            <div class="md-list-item-text" layout="column">
+                                <h3 class="eventlisttitle">{{event.conference}} - {{event.acronym}}</h3>
+                                <h4><i class="material-icons">date_range</i> {{event.date | date}}</h4>
+                                <p>{{event.description}}</p>
+                            </div>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </md-list>
+                </md-content>
+            </div>
+        </div>
+    </div>
+    <div flex="100" flex-gt-xs="10" layout="row" layout-gt-xs="column"></div>
+</div>
